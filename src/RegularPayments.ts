@@ -1,15 +1,11 @@
+import HTTPClient from './HTTPClient';
 import { RegularPaymentStatusRequest, WayForPayCredentials } from './types'
-import axios, { AxiosInstance } from 'axios'
 
 class RegularPayments {
-  private httpClient: AxiosInstance;
   private credentials: WayForPayCredentials
 
   constructor(credentials: WayForPayCredentials) {
     this.credentials = credentials
-    this.httpClient = axios.create({
-      baseURL: 'https://api.wayforpay.com/regularApi'
-    })
   }
 
   async checkStatus(orderReference: string): Promise<any> {
@@ -20,7 +16,7 @@ class RegularPayments {
       orderReference
     }
     try {
-      const response = await this.httpClient.post('', payload)
+      const response = await HTTPClient.post('/regularApi', payload)
       return response.data
     } catch (error) {
       console.error('Error in RegularPayments:checkStatus', error)

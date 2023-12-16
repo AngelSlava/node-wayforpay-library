@@ -3,7 +3,7 @@ import RegularPayments from './RegularPayments'
 
 class WayForPayAPI {
   private readonly credentials: WayForPayCredentials
-  public regularPayments: RegularPayments;
+  public regularPayments: RegularPayments
 
   constructor(credentials: WayForPayCredentials) {
     this.credentials = credentials

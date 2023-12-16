@@ -2,5 +2,5 @@ node_modules/
 src/
 tests/
 .npmignore
+.babelrc
 tsconfig.json
-babel.config.json
