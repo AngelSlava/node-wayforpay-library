@@ -1,0 +1,36 @@
+{
+  "name": "node-wayforpay-library",
+  "version": "0.0.1",
+  "description": "WayForPay api library",
+  "main": "dist/index.js",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Viacheslav Angel <do.angelwork@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/AngelSlava/node-wayforpay-library/issues"
+  },
+  "homepage": "https://github.com/AngelSlava/node-wayforpay-library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AngelSlava/node-wayforpay-library.git"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.6",
+    "@babel/preset-env": "^7.23.6",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.4",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  }
+}

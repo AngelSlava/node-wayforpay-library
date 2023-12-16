@@ -1,0 +1,6 @@
+node_modules/
+src/
+tests/
+.npmignore
+tsconfig.json
+babel.config.json
