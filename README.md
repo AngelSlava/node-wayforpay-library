@@ -34,6 +34,8 @@ const payment = await wfp.regularPayments.create({
   orderReference: 'ORDER_REFERENCE',
   email: 'CLIENT_EMAIL'
 })
+
+// ...
 ```
 
 ## Regular Payment methods
@@ -42,6 +44,12 @@ const payment = await wfp.regularPayments.create({
 - `suspend`: To suspend the possibility of recurrent payments from the card, the merchant may pause the payment.
 - `resume`: In order to resume previously suspended recurrent payment
 - `change`: Change regular payment.
+
+## Purchase methods
+- `generatePurchaseData`: Generate data (JSON) for payment form with signature
+
+## Changelog
+For detailed information on changes between versions, please refer to our [changelog](./CHANGELOG.md).
 
 ## License
 This project is licensed under the MIT License.
