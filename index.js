@@ -1,2 +1,1 @@
-import WayForPayAPI from './dist/WayForPayAPI'
-export default WayForPayAPI
+module.exports = require('./dist/WayForPayAPI').default
