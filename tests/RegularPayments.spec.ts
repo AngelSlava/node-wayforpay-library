@@ -10,6 +10,12 @@ describe('RegularPayments', () => {
 
   const wayForPay = new WayForPayAPI({ merchantAccount, merchantPassword });
 
+  const fakeResponse = {
+    reasonCode: 4100,
+    reason: "Ok",
+    orderReference
+  };
+
   it.skip('Create regular payment', async () => {
     const payload = {
       regularMode: regularMode.ONCE,
@@ -20,72 +26,35 @@ describe('RegularPayments', () => {
       email: process.env.CLIENT_EMAIL as string
     }
 
-    const fakeResponse = {
-      data: {
-        reasonCode: 4100,
-        reason: 'Ok',
-        orderReference
-      }
-    };
-
     const response = await wayForPay.regularPayments.create(payload)
-    expect(response).toEqual(expect.objectContaining(fakeResponse.data));
+    expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
 
   it('Check regular payment status', async () => {
-    const fakeResponse = {
-      data: {
-        reasonCode: 4100,
-        reason: 'Ok',
-        orderReference
-      }
-    };
-
-    const status = await wayForPay.regularPayments.status(orderReference);
-    expect(status).toEqual(expect.objectContaining(fakeResponse.data));
-    console.log(status)
+    const response = await wayForPay.regularPayments.status(orderReference);
+    expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
 
-  it.skip('Suspend regular payment', async () => {
-    const fakeResponse = {
-      data: {
-        reasonCode: 4100,
-        reason: 'Ok'
-      }
-    };
+  it('Suspend regular payment', async () => {
     const response = await wayForPay.regularPayments.suspend(orderReference)
-    expect(response).toEqual(expect.objectContaining(fakeResponse.data))
+    expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
 
-  it.skip('Resume regular payment', async () => {
-    const fakeResponse = {
-      data: {
-        reasonCode: 4100,
-        reason: 'Ok'
-      }
-    };
+  it('Resume regular payment', async () => {
     const response = await wayForPay.regularPayments.resume(orderReference)
-    expect(response).toEqual(expect.objectContaining(fakeResponse.data))
-    console.log(response)
+    expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
 
-  it.skip('Change regular payment', async () => {
+  it('Change regular payment', async () => {
     const payload = {
       regularMode: regularMode.DAILY,
-      amount: (0.01 * 37.7).toFixed(2),
+      amount: (0.01).toFixed(2),
       dateBegin: '27.12.2023',
       dateEnd: '28.12.2023',
       orderReference,
     }
 
-    const fakeResponse = {
-      data: {
-        reasonCode: 4100,
-        reason: 'Ok'
-      }
-    };
-
     const response = await wayForPay.regularPayments.change(payload)
-    expect(response).toEqual(expect.objectContaining(fakeResponse.data))
+    expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
 });

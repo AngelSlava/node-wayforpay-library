@@ -1,4 +1,4 @@
-import HTTPClient from './HTTPClient'
+import { HTTPClientRegularPayments } from './HTTPClient'
 import { RegularPaymentCreateRequest, WayForPayCredentials } from './types'
 import { requestType } from './enums'
 
@@ -34,7 +34,7 @@ class RegularPayments {
       ...config
     }
     try {
-      const response = await HTTPClient.post('/regularApi', payload)
+      const response = await HTTPClientRegularPayments.post('/regularApi', payload)
       return response.data
     } catch (error) {
       console.error('Error in RegularPayments:create', error)
@@ -47,18 +47,17 @@ class RegularPayments {
       merchantAccount: this.credentials.merchantAccount,
       merchantPassword: this.credentials.merchantPassword,
       requestType: requestType.CHANGE,
-      currency: 'UAH',
+      currency: 'USD',
       ...config
     }
     try {
-      const response = await HTTPClient.post('/regularApi', payload)
+      const response = await HTTPClientRegularPayments.post('/regularApi', payload)
       return response.data
     } catch (error) {
       console.error('Error in RegularPayments:create', error)
       throw error
     }
   }
-
 
   async crud(orderReference: string, requestType: requestType) {
     const payload = {
@@ -68,7 +67,7 @@ class RegularPayments {
       orderReference
     }
     try {
-      const response = await HTTPClient.post('/regularApi', payload)
+      const response = await HTTPClientRegularPayments.post('/regularApi', payload)
       return response.data
     } catch (error) {
       console.error(`Error in RegularPayments:${requestType}`, error)

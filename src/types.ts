@@ -5,6 +5,13 @@ export interface WayForPayCredentials {
   merchantPassword: string
 }
 
+export interface PurchaseCredentials extends WayForPayCredentials {
+  merchantDomainName: string
+  merchantSecret: string
+  returnUrl?: string
+  serviceUrl?: string
+}
+
 export interface RegularPaymentStatusRequest extends WayForPayCredentials {
   requestType: requestType
   orderReference: string
