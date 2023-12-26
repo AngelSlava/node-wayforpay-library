@@ -38,6 +38,7 @@ const payment = await wfp.regularPayments.create({
 // ...
 ```
 
+
 ## Regular Payment methods
 - `create`: Create regular payment
 - `status`: Check regular payment status
@@ -45,14 +46,18 @@ const payment = await wfp.regularPayments.create({
 - `resume`: In order to resume previously suspended recurrent payment
 - `change`: Change regular payment.
 
+
 ## Purchase methods
 - `generatePurchaseData`: Generate data (JSON) for payment form with signature
+
 
 ## Changelog
 For detailed information on changes between versions, please refer to our [changelog](./CHANGELOG.md).
 
+
 ## License
 This project is licensed under the MIT License.
+
 
 ## Author
 Viacheslav Angel
