@@ -18,21 +18,30 @@ import WayForPayAPI from 'node-wayforpay-library';
 
 const merchantAccount: string = 'YOUR_MERCHANT_ACCOUNT';
 const merchantPassword: string = 'YOUR_MERCHANT_PASSWORD';
-const orderReference: string = 'ORDER_REFERENCE';
+
+// Init api
 const wfp = new WayForPayAPI({ merchantAccount, merchantPassword })
 
-const status = await wfp.regularPayments.checkStatus(orderReference)
+// Check status
+const response = await wfp.regularPayments.status('ORDER_REFERENCE')
+
+// Create payment
+const payment = await wfp.regularPayments.create({
+  regularMode: 'weekly', // once, daily, quarterly, weekly, monthly, halfyearly, yearly 
+  amount: '100',
+  dateBegin: 'DD.MM.YYYY',
+  dateEnd: 'DD.MM.YYYY',
+  orderReference: 'ORDER_REFERENCE',
+  email: 'CLIENT_EMAIL'
+})
 ```
 
-
-
-Now you can use the component in your template:
-```html
-<VueCustomRangeInput v-model="yourValue" :min="minValue" :max="maxValue" :step="stepValue" />
-```
-
-## Regular Payments
-- `checkStatus`: Check regular payment status by order reference
+## Regular Payment methods
+- `create`: Create regular payment
+- `status`: Check regular payment status
+- `suspend`: To suspend the possibility of recurrent payments from the card, the merchant may pause the payment.
+- `resume`: In order to resume previously suspended recurrent payment
+- `change`: Change regular payment.
 
 ## License
 This project is licensed under the MIT License.
