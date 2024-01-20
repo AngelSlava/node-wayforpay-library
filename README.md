@@ -47,6 +47,8 @@ const payment = await wfp.regularPayments.create({
 
 ## Purchase methods
 - `generatePurchaseData`: Generate data (JSON) for payment form with signature
+- `generateVerifyData`: Generate data (JSON) for card verification form with signature
+
 
 ## Changelog
 For detailed information on changes between versions, please refer to our [changelog](./CHANGELOG.md).
