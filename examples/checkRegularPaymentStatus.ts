@@ -7,7 +7,7 @@ import WayForPayAPI from '../src/WayForPayAPI'
   const wfp = new WayForPayAPI({ merchantAccount, merchantPassword })
 
   try {
-    const status = await wfp.regularPayments.checkStatus(orderReference)
+    const status = await wfp.regularPayments.status(orderReference)
     console.log('Status:', status)
   } catch (error) {
     console.log('Status check error:', error)

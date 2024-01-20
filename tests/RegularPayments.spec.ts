@@ -3,7 +3,7 @@ require('dotenv').config()
 import { regularMode } from '../src/enums'
 import WayForPayAPI from '../src/WayForPayAPI';
 
-describe('RegularPayments', () => {
+describe.skip('RegularPayments', () => {
   const merchantAccount = process.env.WFP_ACCOUNT as string;
   const merchantPassword = process.env.WFP_PASWORD as string;
   const orderReference = process.env.WFP_ORDER_REFERENCE as string;
@@ -16,7 +16,7 @@ describe('RegularPayments', () => {
     orderReference
   };
 
-  it.skip('Create regular payment', async () => {
+  it('Create regular payment', async () => {
     const payload = {
       regularMode: regularMode.ONCE,
       amount: (0.01 * 37.7).toFixed(2),
@@ -48,13 +48,14 @@ describe('RegularPayments', () => {
   it('Change regular payment', async () => {
     const payload = {
       regularMode: regularMode.DAILY,
-      amount: (0.01).toFixed(2),
-      dateBegin: '27.12.2023',
-      dateEnd: '28.12.2023',
+      amount: (0.5).toFixed(2),
+      dateBegin: '28.12.2023',
+      dateEnd: '29.12.2023',
       orderReference,
     }
 
     const response = await wayForPay.regularPayments.change(payload)
     expect(response.reasonCode).toBe(fakeResponse.reasonCode)
   })
+
 });

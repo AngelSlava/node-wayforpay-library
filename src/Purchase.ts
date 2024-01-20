@@ -1,5 +1,7 @@
-import crypto from 'crypto'
-import { PurchaseCredentials } from './types'
+import crypto, { verify } from 'crypto'
+import { PurchaseCredentials, RegularPaymentCreateRequest } from './types'
+import { requestType } from './enums'
+import { HTTPClientPurchase } from './HTTPClient'
 
 class Purchase {
   private credentials: PurchaseCredentials
@@ -37,6 +39,29 @@ class Purchase {
     const hmac = crypto.createHmac('md5', this.credentials.merchantSecret)
     hmac.update(str)
     return hmac.digest('hex')
+  }
+
+  generateVerifyData(data: any) {
+    const merchantSignature = this.generateSignature({
+      orderReference: data.orderReference,
+      amount: data.amount,
+      currency: data.currency,
+    })
+
+    return {
+      merchantAccount: this.credentials.merchantAccount,
+      merchantDomainName: this.credentials.merchantDomainName,
+      merchantAuthType: 'SimpleSignature',
+      merchantSignature,
+      orderReference: data.orderReference,
+      amount: data.amount,
+      currency: data.currency,
+      clientEmail: data.clientEmail,
+      clientPhone: data.clientPhone,
+      returnUrl: this.credentials.returnUrl,
+      serviceUrl: this.credentials.serviceUrl,
+      language: data.language
+    }
   }
 }
 
