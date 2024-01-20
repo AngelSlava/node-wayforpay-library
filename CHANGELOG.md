@@ -1,9 +1,9 @@
 # Changelog
 
-## [0.0.7] - 2023-12-26
+## [0.0.9] - 2024-01-20
 
 ### Added
-- Purchase - generate purchase data
+- card verification (with spec)
 
 ### Fixed
-- none
+-  example: checkRegularPaymentStatus

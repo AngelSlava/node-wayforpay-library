@@ -14,6 +14,7 @@ describe('Purchase', () => {
   const returnUrl = process.env.WFP_RETURN_URL as string;
   const serviceUrl = process.env.WFP_SERVICE_URL as string;
   const clientEmail = process.env.CLIENT_EMAIL as string;
+  const clientPhone = process.env.CLIENT_PHONE as string;
 
   const wayForPay = new WayForPayAPI({
     merchantAccount,
@@ -53,5 +54,27 @@ describe('Purchase', () => {
 
     const url = response.request.res.responseUrl
     expect(url.includes('?vkh=')).toBeTruthy()
+  })
+
+  it('Verify', async () => {
+    const payload = {
+      orderReference: 'test_lbx_' + Date.now(),
+      currency: 'UAH',
+      amount: 0,
+      clientEmail,
+      clientPhone,
+      language: 'uk'
+    }
+    const data = wayForPay.purchase.generateVerifyData(payload)
+    const response = await axios.post(
+      'https://secure.wayforpay.com/verify',
+      querystring.stringify(data), {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+
+    const dom = new JSDOM(response.data)
+    const title: HTMLElement | null = dom.window.document.querySelector('title')
+    const text = title?.textContent?.split('\n')
+    expect(text?.includes('Верифікація картки')).toBeTruthy()
   })
 })
