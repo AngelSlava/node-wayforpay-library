@@ -1,6 +1,6 @@
 {
   "name": "node-wayforpay-library",
-  "version": "0.0.91",
+  "version": "0.1.0",
   "description": "WayForPay api library",
   "main": "index.js",
   "scripts": {
