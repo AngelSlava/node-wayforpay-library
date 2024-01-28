@@ -48,7 +48,6 @@ var Purchase = /*#__PURE__*/function () {
     value: function generateSignature(payload) {
       var str = Object.values(payload).join(';');
       var hmac = _crypto["default"].createHmac('md5', this.credentials.merchantSecret);
-      console.log(str);
       hmac.update(str);
       return hmac.digest('hex');
     }
@@ -74,7 +73,9 @@ var Purchase = /*#__PURE__*/function () {
         clientPhone: data.clientPhone,
         returnUrl: this.credentials.returnUrl,
         serviceUrl: this.credentials.serviceUrl,
-        language: data.language
+        language: data.language,
+        paymentSystem: data.paymentSystem || 'card',
+        verifyType: data.verifyType || 'simple'
       };
     }
   }]);

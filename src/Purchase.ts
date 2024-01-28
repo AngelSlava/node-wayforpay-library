@@ -62,7 +62,9 @@ class Purchase {
       clientPhone: data.clientPhone,
       returnUrl: this.credentials.returnUrl,
       serviceUrl: this.credentials.serviceUrl,
-      language: data.language
+      language: data.language,
+      paymentSystem: data.paymentSystem || 'card',
+      verifyType: data.verifyType || 'simple'
     }
   }
 }
