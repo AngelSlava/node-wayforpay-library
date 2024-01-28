@@ -56,9 +56,9 @@ describe('Purchase', () => {
     expect(url.includes('?vkh=')).toBeTruthy()
   })
 
-  it('Verify', async () => {
+  it.only('Verify', async () => {
     const payload = {
-      orderReference: 'test_lbx_' + Date.now(),
+      orderReference: '65b51ed399a98013bbd08fb3',
       currency: 'UAH',
       amount: 0,
       clientEmail,
@@ -66,6 +66,7 @@ describe('Purchase', () => {
       language: 'uk'
     }
     const data = wayForPay.purchase.generateVerifyData(payload)
+    console.log(data)
     const response = await axios.post(
       'https://secure.wayforpay.com/verify',
       querystring.stringify(data), {

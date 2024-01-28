@@ -37,6 +37,7 @@ class Purchase {
   generateSignature(payload: any) {
     const str = Object.values(payload).join(';')
     const hmac = crypto.createHmac('md5', this.credentials.merchantSecret)
+    console.log(str)
     hmac.update(str)
     return hmac.digest('hex')
   }
