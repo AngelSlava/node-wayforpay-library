@@ -66,7 +66,6 @@ describe('Purchase', () => {
       language: 'uk'
     }
     const data = wayForPay.purchase.generateVerifyData(payload)
-    console.log(data)
     const response = await axios.post(
       'https://secure.wayforpay.com/verify',
       querystring.stringify(data), {
