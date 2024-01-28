@@ -1,9 +1,9 @@
 # Changelog
 
-## [0.0.9] - 2024-01-20
+## [0.1.2] - 2024-01-28
 
 ### Added
-- card verification (with spec)
+- bugfix
 
 ### Fixed
--  example: checkRegularPaymentStatus
+- **generateVerifyData** - signature generation bug
