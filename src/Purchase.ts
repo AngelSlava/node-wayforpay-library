@@ -43,6 +43,8 @@ class Purchase {
 
   generateVerifyData(data: any) {
     const merchantSignature = this.generateSignature({
+      merchantAccount: this.credentials.merchantAccount,
+      merchantDomainName: this.credentials.merchantDomainName,
       orderReference: data.orderReference,
       amount: data.amount,
       currency: data.currency,
