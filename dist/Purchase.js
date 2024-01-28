@@ -55,6 +55,8 @@ var Purchase = /*#__PURE__*/function () {
     key: "generateVerifyData",
     value: function generateVerifyData(data) {
       var merchantSignature = this.generateSignature({
+        merchantAccount: this.credentials.merchantAccount,
+        merchantDomainName: this.credentials.merchantDomainName,
         orderReference: data.orderReference,
         amount: data.amount,
         currency: data.currency
